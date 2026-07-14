@@ -1,13 +1,10 @@
-from services.storage_service import load_documents
 from services.search_service import search
 from services.ollama_service import ask_llm
-documents = load_documents()
 
 def answer_question(question):
-    # documents = load_documents()
-    results = search(question,documents)
+    results = search(question)
     context = "\n\n".join(
-        result["chunk"] for result in results
+        results
     )
     final_prompt = f"""
     you are an HR assistant.
