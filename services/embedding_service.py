@@ -1,6 +1,6 @@
 import ollama
-
-MODEL = "nomic-embed-text"
+from config.settings import EMBEDDING_MODEL
+MODEL = EMBEDDING_MODEL
 
 def generate_embedding(text):
     response = ollama.embed(

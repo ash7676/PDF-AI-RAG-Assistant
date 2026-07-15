@@ -1,7 +1,9 @@
 import chromadb
+from config.settings import CHROMA_COLLECTION,CHROMA_DB_PATH
 
-client =  chromadb.PersistentClient(path="./data")
-collection = client.get_or_create_collection(name="employee_handbook")
+
+client =  chromadb.PersistentClient(path=CHROMA_DB_PATH)
+collection = client.get_or_create_collection(name=CHROMA_COLLECTION)
 
 
 def add_document(id,chunk,embedding):
@@ -13,8 +15,8 @@ def add_document(id,chunk,embedding):
     
 def reset_collection():
     global collection
-    client.delete_collection(name="employee_handbook")
+    client.delete_collection(name=CHROMA_COLLECTION)
     collection = client.get_or_create_collection(
-        name="employee_handbook"
+        name=CHROMA_COLLECTION
     )
     

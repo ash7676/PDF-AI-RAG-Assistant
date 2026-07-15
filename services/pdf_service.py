@@ -1,6 +1,8 @@
 from pypdf import PdfReader
+from config.settings import PDF_PATH
+
 def get_pdf_text():
-    reader = PdfReader("documents/employee-handbook.pdf")
+    reader = PdfReader(PDF_PATH)
     text=""
     for page in reader.pages:
         page_text = page.extract_text() 

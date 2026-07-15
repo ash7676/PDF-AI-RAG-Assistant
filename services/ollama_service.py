@@ -1,8 +1,9 @@
 import ollama
+from config.settings import CHAT_MODEL
 def ask_llm(prompt):
     
     response = ollama.chat(
-        model="gemma3:1b",
+        model=CHAT_MODEL,
         messages=[
             {
                 "role": "user",
