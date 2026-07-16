@@ -5,6 +5,8 @@ from services.pdf_service import get_pdf_text
 from services.chunker import split_into_chunks
 from services.embedding_service import generate_embedding
 from services.rag_service import answer_question
+import config.logging_config
+
 app = FastAPI()
 
 

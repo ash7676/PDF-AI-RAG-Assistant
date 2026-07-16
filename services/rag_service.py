@@ -1,6 +1,8 @@
 from services.search_service import search
 from services.ollama_service import ask_llm
+import logging
 
+logger =  logging.getLogger(__name__)
 def answer_question(question):
     results = search(question)
     context = "\n\n".join(
@@ -16,7 +18,7 @@ def answer_question(question):
     Question:
     {question}
     """
-    print("final prompt--",final_prompt)
-    
+    print()
+    logger.info(f"final prompt: {final_prompt}")
     answer =  ask_llm(final_prompt)
     return answer
