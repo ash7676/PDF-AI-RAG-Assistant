@@ -1,7 +1,7 @@
 from services.embedding_service import generate_embedding
 # from services.similarity_service import cosine_similarity
 from services.chroma_service import collection
-
+from exceptions.exceptions import VectorSearchError
 # def search(question,documents,top_k=3):
 #     question_embedding =  generate_embedding(question)
 #     results = []
@@ -15,9 +15,12 @@ from services.chroma_service import collection
 #     )
 #     return results[:top_k]
 def search(question,top_k=3):
-    question_embedding =  generate_embedding(question)
-    results = collection.query(
-        query_embeddings=[question_embedding],
-        n_results=top_k
-    )
-    return results["documents"][0]
+    try:
+        question_embedding =  generate_embedding(question)
+        results = collection.query(
+            query_embeddings=[question_embedding],
+            n_results=top_k
+        )
+        return results["documents"][0]
+    except Exception as e:
+        raise VectorSearchError() from e
